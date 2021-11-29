@@ -7,6 +7,12 @@ import dash_bootstrap_components as dbc
 #from app import server
 #from app import app
 
+#Theme
+#https://bootswatch.com/vapor/ 
+
+#Icons
+# https://fontawesome.com/v5.15/icons?d=gallery&p=2
+
 #Use if you want to change the style later or if you wanna make your own css
 BS = "https://bootswatch.com/5/vapor/bootstrap.min.css"
 FONT_AWESOME = "https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -69,10 +75,11 @@ controls = dbc.InputGroup(
 app.layout = dbc.Container(
     fluid=True,
     children=[
-        html.H1(["Topo's ", html.I(className="fab fa-wikipedia-w ml-0"),"iki-Bot ", html.I(className="fas fa-robot ml-0")]),
-        html.H5("I am a knowledge-based question answering bot."),
-        html.H5("Learn more about me below:"),
+        html.H1([html.I(className="fab fa-wikipedia-w ml-0"),"iki-QA-Bot ", html.I(className="fas fa-robot ml-0")]),
+        html.H5("I am a question-answering bot fine-tuned on WikiQA"),
+        html.H5("Learn more below:"),
         dbc.Button(html.Span(["", html.I(className="fab fa-github ml-2")]), href="https://github.com/mparoca/chatbot_D-590", color="secondary"),
+        dbc.Button(html.Span(["", html.I(className="fab fa-windows ml-2")]), href="https://www.microsoft.com/en-us/research/publication/wikiqa-a-challenge-dataset-for-open-domain-question-answering/", color="info"),
         dbc.Button(html.Span(["", html.I(className="fab fa-linkedin ml-2")]), href="https://www.linkedin.com/in/maria-paula-aroca-42a0a5166/"),
         dcc.Store(id="store-conversation", data=""),
         conversation,
@@ -80,6 +87,34 @@ app.layout = dbc.Container(
         html.Hr(),
     ],
 )
+
+
+## CALLBACKS
+@app.callback(
+    Output("display-conversation", "children"), [Input("store-conversation", "data")]
+)
+def update_display(chat_history):
+    return [
+        "Q:" + chat_history + "\n"
+    ]
+
+
+@app.callback(
+    [Output("store-conversation", "data"), Output("user-input", "value")],
+    [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
+    [State("user-input", "value"), State("store-conversation", "data")],
+)
+def run_chatbot(n_clicks, n_submit, user_input, chat_history):
+    if n_clicks == 0:
+        return "", ""
+
+    if user_input is None or user_input == "":
+        return chat_history, ""
+
+    # # temporary
+    return  chat_history + user_input + "A:" + user_input + " is what you just said", ""
+
+
 
 server = app.server
 app.config.suppress_callback_exceptions = True
