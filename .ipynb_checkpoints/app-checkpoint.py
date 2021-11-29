@@ -71,7 +71,7 @@ app.layout = dbc.Container(
     children=[
         html.H1(["Topo's ", html.I(className="fab fa-wikipedia-w ml-0"),"iki-Bot ", html.I(className="fas fa-robot ml-0")]),
         html.H5("I am a knowledge-based question answering bot."),
-        html.H5("You can learn more about me and my creator below:"),
+        html.H5("Learn more about me below:"),
         dbc.Button(html.Span(["", html.I(className="fab fa-github ml-2")]), href="https://github.com/mparoca/chatbot_D-590", color="secondary"),
         dbc.Button(html.Span(["", html.I(className="fab fa-linkedin ml-2")]), href="https://www.linkedin.com/in/maria-paula-aroca-42a0a5166/"),
         dcc.Store(id="store-conversation", data=""),
