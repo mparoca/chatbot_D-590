@@ -14,6 +14,7 @@ from get_answer import get_answer
 #Icons
 # https://fontawesome.com/v5.15/icons?d=gallery&p=2
 
+
 #Use if you want to change the style later or if you wanna make your own css
 BS = "https://bootswatch.com/5/vapor/bootstrap.min.css"
 FONT_AWESOME = "https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -83,7 +84,7 @@ app.layout = dbc.Container(
         dbc.Button(html.Span(["", html.I(className="fab fa-windows ml-2")]), href="https://www.microsoft.com/en-us/research/publication/wikiqa-a-challenge-dataset-for-open-domain-question-answering/", color="info"),
         dbc.Button(html.Span(["", html.I(className="fab fa-linkedin ml-2")]), href="https://www.linkedin.com/in/maria-paula-aroca-42a0a5166/"),
         html.Hr(),
-        dcc.Store(id="store-conversation", data="Hello! I am a knowledge-based question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with Unknown."),
+        dcc.Store(id="store-conversation", data="Hello! I am a knowledge-based question answering bot. If you ask me a factual question I will give you the answer. Try asking : what does the president of the usa do?"),
         conversation,
         controls,
         html.Hr(),
@@ -97,7 +98,8 @@ app.layout = dbc.Container(
 )
 def update_display(chat_history):
     return [
-        chat_history
+        textbox(x, box="self") if i % 2 == 0 else textbox(x, box="other")
+        for i, x in enumerate(chat_history.split(">"))
     ]
 
 
@@ -112,11 +114,15 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
 
     if user_input is None or user_input == "":
         return chat_history, ""
+    
+    try:
+        get_answer(user_input)
+        return chat_history + ">Q: " + user_input + ">A: " + get_answer(user_input), ""
+    
+    except:
+        return chat_history + ">Q: " + user_input + ">Sorry, please be more specific, I'm still learning", ""
 
-    # # temporary
-    return  chat_history + user_input + '<br/>' +  "A:" + user_input + " is what you just said", ""
-
-
+    
 
 server = app.server
 app.config.suppress_callback_exceptions = True
