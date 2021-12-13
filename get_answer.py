@@ -2,7 +2,7 @@ from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 import wikipedia as wiki
 import torch
 
-model_path = 'deepset/roberta-base-squad2' #Using bert-base-cased-squad2 temporarily because custom roberta model is too lage for github feel free to use 'models/roberta-custom' in local after training
+model_path = 'deepset/bert-medium-squad2-distilled' #Using bert-base-cased-squad2 temporarily because custom roberta model is too lage for github feel free to use 'models/roberta-custom' in local after training
 #model_path = 'models/roberta-custom'
 model = AutoModelForQuestionAnswering.from_pretrained(model_path, return_dict=False)
 tokenizer = AutoTokenizer.from_pretrained(model_path)
