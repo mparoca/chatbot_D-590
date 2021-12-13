@@ -81,7 +81,8 @@ app.layout = dbc.Container(
         dbc.Button(html.Span(["", html.I(className="fab fa-github ml-2")]), href="https://github.com/mparoca/chatbot_D-590", color="secondary"),
         dbc.Button(html.Span(["", html.I(className="fab fa-windows ml-2")]), href="https://www.microsoft.com/en-us/research/publication/wikiqa-a-challenge-dataset-for-open-domain-question-answering/", color="info"),
         dbc.Button(html.Span(["", html.I(className="fab fa-linkedin ml-2")]), href="https://www.linkedin.com/in/maria-paula-aroca-42a0a5166/"),
-        dcc.Store(id="store-conversation", data=""),
+        html.Hr(),
+        dcc.Store(id="store-conversation", data="Hello! I am a knowledge-based question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with Unknown."),
         conversation,
         controls,
         html.Hr(),
@@ -95,7 +96,7 @@ app.layout = dbc.Container(
 )
 def update_display(chat_history):
     return [
-        "Q:" + chat_history + "\n"
+        chat_history
     ]
 
 
@@ -112,7 +113,7 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         return chat_history, ""
 
     # # temporary
-    return  chat_history + user_input + "A:" + user_input + " is what you just said", ""
+    return  chat_history + user_input + '<br/>' +  "A:" + user_input + " is what you just said", ""
 
 
 
