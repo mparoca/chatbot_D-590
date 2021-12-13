@@ -20,4 +20,4 @@ def get_answer(question):
     return answer
 
 
-print(get_answer("what does the president of the usa do?"))
+#print(get_answer("what does the president of the usa do?"))
