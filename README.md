@@ -13,7 +13,7 @@ QA chatbot is trained with [roberta-base-squad2 model](https://huggingface.co/de
 - https://towardsdatascience.com/how-to-fine-tune-a-q-a-transformer-86f91ec92997 
 - https://colab.research.google.com/github/fastforwardlabs/ff14_blog/blob/master/_notebooks/2020-05-19-Getting_Started_with_QA.ipynb?pli=1&authuser=1#scrollTo=bgYVkF2RmHPK
 
-When the user enters a query, the [wikipedia library](https://pypi.org/project/wikipedia/) is used to extract the initial paragraphs of an entry that matches the user query. The fine-tuned RoBERTa model is then used to select the location of the response that best matches the query given the context. 
+When the user enters a query, the [wikipedia library](https://pypi.org/project/wikipedia/) is used to extract the initial paragraphs of a Wikipedia entry that matches the user query. The fine-tuned RoBERTa model is then used to select the location of the response that best matches the query given the context. 
 
 ## Deployment
 
