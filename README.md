@@ -26,6 +26,8 @@ The app was built on [Dash](https://plot.ly/dash), which is a simple and effecti
 ### GitHub Integration (Heroku GitHub Deploys)
 The app is currently deployed using Heorku through GitHub integration on the Heroku website. [GitHub integration](https://devcenter.heroku.com/articles/github-integration) is configured for a Heroku app and manually deployed, which creates an immediate deployment of the master branch from the current [GitHub repo](https://github.com/mparoca/chatbot_D-590). 
 
+---------------------------------------
+
 Deployed app is using pre-trained minimal model [bert-medium-squad2-distilled](https://huggingface.co/deepset/bert-medium-squad2-distilled). To use the model fine-tuned in [training_model_on_WikiQA.ipynb](https://github.com/mparoca/chatbot_D-590/blob/main/training_model_on_WikiQA.ipynb) or your own fine-tuned model change [get_answer.py](https://github.com/mparoca/chatbot_D-590/blob/main/get_answer.py)
 
 Chatbot front-end partly based on: https://github.com/plotly/dash-sample-apps/tree/main/apps/dash-chatbot
