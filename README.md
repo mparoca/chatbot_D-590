@@ -29,5 +29,6 @@ The app is currently deployed using Heorku through GitHub integration on the Her
 Deployed app is using pre-trained minimal model [bert-medium-squad2-distilled](https://huggingface.co/deepset/bert-medium-squad2-distilled). To use the model fine-tuned in [training_model_on_WikiQA.ipynb](https://github.com/mparoca/chatbot_D-590/blob/main/training_model_on_WikiQA.ipynb) or your own fine-tuned model change [get_answer.py](https://github.com/mparoca/chatbot_D-590/blob/main/get_answer.py)
 
 Chatbot front-end partly based on: https://github.com/plotly/dash-sample-apps/tree/main/apps/dash-chatbot
+
 Theme: https://bootswatch.com/vapor/ 
 Icons: https://fontawesome.com/v5.15/icons?d=gallery&p=2
